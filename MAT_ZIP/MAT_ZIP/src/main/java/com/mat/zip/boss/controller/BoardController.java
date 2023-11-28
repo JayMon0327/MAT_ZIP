@@ -32,22 +32,22 @@ public class BoardController {
 	@Autowired
 	ComDAO comDAO;
 
+	/**
+	 * 게시판 글 생성
+	 */
 	@RequestMapping("/Board_insert")
 	public void insert(BoardVO bag) {
-
-		System.out.println("insert요청됨.");
-		System.out.println(bag);
-
 		boardDAO.insert(bag);
 
 	}
 
+	/**
+	 * 게시판 글 수정
+	 */
 	@PostMapping("/Board_update")
 	public String update(@ModelAttribute BoardVO bag, HttpSession session, Model model) {
-	    System.out.println("update요청됨.");
 	    boardDAO.update(bag);
 	    model.addAttribute("bag", bag);
-	   System.out.println(bag);
 	    // 이전 페이지로 리다이렉트
 	    String prevPage = (String) session.getAttribute("prevPage");
 	    if (prevPage != null) {
@@ -59,17 +59,18 @@ public class BoardController {
 	}
 
 
+	/**
+	 * 게시판 글 삭제
+	 */
 	@RequestMapping("/Board_delete")
 	public void delete(int board_id) {
-		System.out.println("delete요청됨.");
-		System.out.println(board_id);
 		boardDAO.delete(board_id);
 
 	}
 
-//	
-//
-//	
+	/**
+	 * 게시판 글 검색 기능
+	 */
 	@RequestMapping("/Board_search")
 	public void search(String keyword, Model model) {
 	    System.out.println("search 요청됨.");
@@ -78,6 +79,9 @@ public class BoardController {
 	    model.addAttribute("list", list); // attribute 이름을 'bag'에서 'list'로 변경
 	}
 
+	/**
+	 * 게시판 상세 페이지
+	 */
 	@RequestMapping("/Board_detail")
 	public void detail(int board_id, Model model) {
 		System.out.println("상세페이지요청됨.");
@@ -97,6 +101,9 @@ public class BoardController {
 
 	}
 
+	/**
+	 * 댓글 리스트 가져오기
+	 */
 	@RequestMapping("/Board_list")
 	public void list(Model model, @RequestParam(defaultValue = "1") int page) {
 	    int limit = 15;
@@ -118,7 +125,10 @@ public class BoardController {
 	    model.addAttribute("currentPage", page);
 	    
 	}
-	
+
+	/**
+	 * 좋아요 기능
+	 */
 	@PostMapping("/bosslike")
 	public ResponseEntity<?> like(HttpSession session, @RequestParam("board_id") int board_id) {
 	    String user_id = session.getAttribute("user_id").toString();
@@ -141,8 +151,8 @@ public class BoardController {
 	    System.out.println(response);
 	    return new ResponseEntity<>(response, HttpStatus.OK);
 	}
-	
-//	//페이지 로드될때 꽉찬하트 빈하트
+
+	//	//페이지 로드될때 꽉찬하트 빈하트
 //	@GetMapping("/bosslikeload/{board_id}")
 //    public ModelAndView getBoard(HttpSession session, @PathVariable("board_id") int board_id) {
 //        ModelAndView mav = new ModelAndView();
@@ -154,9 +164,6 @@ public class BoardController {
 //        mav.setViewName("board/detail");
 //        return mav;
 //    }
-
-
-
 }
 
 

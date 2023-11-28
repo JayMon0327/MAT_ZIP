@@ -6,76 +6,23 @@
 <!-- SQL문 정의할 때 VO표현을 간단하게 하고 싶은 경우. 
      별명을 지어서 사용 -->
    <typeAliases>
-      <typeAlias type="com.mat.zip.registerAndSearch.model.MZRegisterInfoVO" alias="mzRegisterInfoVO"></typeAlias>      
-      <typeAlias type="com.mat.zip.registerAndSearch.model.RestaurantVO" alias="restaurantVO"></typeAlias>
       <typeAlias type="com.mat.zip.boss.model.BoardVO" alias="boardVO"></typeAlias>
       <typeAlias type="com.mat.zip.boss.model.ComVO" alias="ComVO"></typeAlias>
       <typeAlias type="com.mat.zip.boss.model.Boss_memberVO" alias="boss_memberVO"></typeAlias>
       <typeAlias type="com.mat.zip.boss.model.MemberVO" alias="memberVO"></typeAlias>
       <typeAlias type="com.mat.zip.boss.model.PaymentVO" alias="paymentVO"></typeAlias>
       <typeAlias type="com.mat.zip.boss.model.ChartVO" alias="ChartVO"></typeAlias>
-      <typeAlias type="com.mat.zip.boss.model.return_CustomerCountVO" alias="return_CustomerCountVO"></typeAlias>
-      <typeAlias type="com.mat.zip.boss.model.return_OrderCountVO" alias="return_OrderCountVO"></typeAlias>
-      <typeAlias type="com.mat.zip.boss.model.return_OrderTotalVO" alias="return_OrderTotalVO"></typeAlias>
-		<typeAlias type="com.mat.zip.point.model.gifticonVO" alias="gifticonVO"></typeAlias>
-		<typeAlias type="com.mat.zip.point.model.ProductPointVO" alias="ProductPointVO"></typeAlias>
-		<typeAlias type="com.mat.zip.point.model.PointExchangeHistoryVO" alias="PointExchangeHistoryVO"></typeAlias>
-		<typeAlias type="com.mat.zip.point.model.PointSaveHistoryVO" alias="PointSaveHistoryVO"></typeAlias>
-		<typeAlias type="com.mat.zip.point.model.PointDetailHistoryVO" alias="PointDetailHistoryVO"></typeAlias>
-      <typeAlias type="com.mat.zip.point.model.PointInquiryVO" alias="PointInquiryVO"></typeAlias>
-      <typeAlias type="com.mat.zip.point.model.RankingVO" alias="RankingVO"></typeAlias>
-		<typeAlias type="com.mat.zip.mzMember.model.MzMemberDTO" alias="memberDTO"></typeAlias>
 
-      
-      <typeAlias type="com.mat.zip.board.PostVO" alias="postVO"></typeAlias>
-		<typeAlias type="com.mat.zip.board.PostComVO"
-			alias="postComVO"></typeAlias>
-		<typeAlias type="com.mat.zip.board.PhotoVO" alias="photoVO"></typeAlias>
-		<typeAlias type="com.mat.zip.board.PhotoComVO"
-			alias="photoComVO"></typeAlias>
-		<typeAlias type="com.mat.zip.board.ReviewVO"
-			alias="reviewVO"></typeAlias>
-		<typeAlias type="com.mat.zip.board.ReviewComVO"
-			alias="reviewComVO"></typeAlias>
-		<typeAlias type="com.mat.zip.board.MZRegisterReceiptDTO"
-			alias="MZRegisterReceiptDTO"></typeAlias>
-		 
-		 <typeAlias type="com.mat.zip.mainpage.MzlistVO" 
-			 alias="mzlistVO"></typeAlias>	
-			
    </typeAliases>
    
    <mappers>
    <!-- SQL문 정의하는 파일들의 목록을 지정. -->
-      <mapper resource="mapper/mzRegisterInfoMapper.xml" />      
-      <mapper resource="mapper/restaurantMapper.xml" />
       <mapper resource="mapper/BoardMapper.xml" />
       <mapper resource="mapper/ComMapper.xml" />
-      <mapper resource="mapper/MemberMapper.xml" />
       <mapper resource="mapper/BossMapper.xml" />
       <mapper resource="mapper/PaymentMapper.xml" />
       <mapper resource="mapper/ChartMapper.xml" />
       <mapper resource="mapper/Chart_reviewMapper.xml" />
-      
-      <!-- HAM POINT mapper -->
-		<mapper resource="mapper/gifticonMapper.xml" />
-		<mapper resource="mapper/productPointMapper.xml" />
-		<mapper resource="mapper/PointExchangeHistoryMapper.xml" />
-		<mapper resource="mapper/pointMapper.xml" />
-		<mapper resource="mapper/PointInquiryMapper.xml" />
-		<mapper resource="mapper/RankingMapper.xml" />
-		
-      <mapper resource="mapper/mzMemberMapper.xml" />
-      
-      
-      <mapper resource="mapper/PostMapper.xml" />
-		<mapper resource="mapper/PostComMapper.xml" />
-		<mapper resource="mapper/PhotoMapper.xml" />
-		<mapper resource="mapper/PhotoComMapper.xml" />
-		<mapper resource="mapper/ReviewMapper.xml" />
-		<mapper resource="mapper/ReviewComMapper.xml" />
-		
-		<mapper resource="mapper/MzlistMapper.xml" />
    </mappers>
    
 </configuration>

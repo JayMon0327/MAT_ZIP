@@ -21,7 +21,6 @@ public class Boss_memberDAO { // CRUD
 
 	public void innerJoinAndInsert(Boss_memberVO bag) {
         my.insert("boss.insertJoinedData", bag);
-        System.out.println("사장회원등록실행");
     }
 
 	public Boss_memberVO login(Boss_memberVO bag) {

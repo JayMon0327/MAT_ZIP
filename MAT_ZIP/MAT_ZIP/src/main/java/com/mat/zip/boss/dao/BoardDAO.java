@@ -45,7 +45,9 @@ public class BoardDAO {
 	public BoardVO one(int board_id) {
 		BoardVO bag = my.selectOne("board.one", board_id);
 		return bag;
-	}// one
+	}
+
+	//게시판 검색
 	public List<BoardVO> searchByTitleOrContent(String keyword) {
 	    return my.selectList("board.searchByTitleOrContent", keyword);
 	}
@@ -64,7 +66,7 @@ public class BoardDAO {
 	    params.put("limit", limit);
 	    params.put("offset", offset);
 	    return my.selectList("board.list", params);
-	} //list
+	}
 	public int count() {
         return my.selectOne("board.count");
     }

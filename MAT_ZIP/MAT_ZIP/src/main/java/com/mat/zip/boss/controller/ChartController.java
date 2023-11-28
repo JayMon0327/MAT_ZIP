@@ -40,7 +40,7 @@ public class ChartController {
     @Autowired
     private SentimentService sentimentService;
     
-  //매출차트 
+  	//매출차트
     @GetMapping("/chart/{storeId}")
     @ResponseBody
     public Map<String, List<ChartVO>> getChart(@PathVariable String storeId) {
@@ -56,8 +56,7 @@ public class ChartController {
         List<ChartVO> thisMonthTotal = chartService.thisMonthTotalAmount(storeId);
         List<ChartVO> lastMonthTotal = chartService.lastMonthTotalAmount(storeId);
         List<ChartVO> twoMonthsAgoTotal = chartService.twoMonthsAgoTotalAmount(storeId);
-        
-        
+
         Map<String, List<ChartVO>> response = new HashMap<>();
         response.put("thisMonth", chartData);
         response.put("lastMonth", chartDataX);
@@ -69,7 +68,7 @@ public class ChartController {
         return response;
     }
     
-    // 재방문 차트    
+	// 재방문 차트
 	 // 이번달,지난달 재방문율 차트 조회
 	    @GetMapping("returnCustomerCount/{storeId}")
 	    public ResponseEntity<Map<String, return_CustomerCountVO>> getReturnCustomerCount(@PathVariable String storeId) {
@@ -78,7 +77,6 @@ public class ChartController {
 	        } catch (UnsupportedEncodingException e) {
 	            // 예외 처리
 	        }
-	       System.out.println(storeId);
 	        Map<String, return_CustomerCountVO> response = new HashMap<>();
 	        response.put("thisMonthNew", chartService.findthisMonthNewCustomers(storeId));
 	        response.put("thisMonthReturning", chartService.findthisMonthReturningCustomers(storeId));

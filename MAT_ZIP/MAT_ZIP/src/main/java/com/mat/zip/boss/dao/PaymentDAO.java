@@ -14,7 +14,6 @@ public class PaymentDAO {
     private SqlSession sqlSession;
 
     public void insert(PaymentVO paymentVO) {
-    	System.out.println("Before insert: " + paymentVO.getStoreId());  // 이 부분을 추가
         sqlSession.insert("payment.insert", paymentVO);
     }
 }

@@ -61,8 +61,6 @@ public class ComController {
 		}
 	}
 
-
-
 	@RequestMapping("Com_one")
 	public void one(int Com_id, Model model) {
 		System.out.println("one요청됨.");
