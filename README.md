@@ -16,18 +16,15 @@
 ## 2. 사용 기술
 ### `Back-end`
 * Java 8
-* Spring Framework 5.0.1, Spring MVC
+* Spring Framework 5
 * Junit5
 * Maven
 * Mybatis
-* Eclipse, Visual Studio Code
 
 ### `Front-end`
-* HTML
-* CSS
-* JavaScript
+* JSP
 * JQuery 3.6.4
-* BootStrap 4.1
+* BootStrap 4
 
 ### `DevOps`
 * AWS EC2, S3, RDS, CloudFront, Route 53, ALB
@@ -38,12 +35,12 @@
 * Git, Sourcetree 
 * Slack 
 * Notion
+* Google Drive
 
 ### `External API`
-* Naver, Kakao Social Login
-* Naver AI Sentiment
 * Toss Payments API
 * Google chart API
+* Naver AI Sentiment
 
 
 <br>
@@ -56,7 +53,7 @@
   * Clova API를 사용하여 손님들의 리뷰 데이터를 기반으로 감정분석 결과를 차트화
     
 | <img src ="https://github.com/chujaeyeong/MAT_ZIP_readme_chujy/assets/123634960/97064c73-b97d-417d-9e33-54ca1a7a96b5" width="1150" height="750" /> | 
-
+<br />
 <img src="https://github.com/JayMon0327/Mat.zip_Boss/assets/124110982/92703863-36eb-43db-8eb2-43b1276caecc">
 
 
