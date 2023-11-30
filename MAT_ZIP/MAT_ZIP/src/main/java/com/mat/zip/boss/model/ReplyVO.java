@@ -1,6 +1,6 @@
 package com.mat.zip.boss.model;
 
-public class ComVO {
+public class ReplyVO {
 	private int board_id;
 	private int reply_id;
 	private String writer;

@@ -1,6 +1,6 @@
 package com.mat.zip.boss.model;
 
-public class return_CustomerCountVO {
+public class ReturnCustomerCountVO {
 
 	private String store_id;
 	private int new_customers;

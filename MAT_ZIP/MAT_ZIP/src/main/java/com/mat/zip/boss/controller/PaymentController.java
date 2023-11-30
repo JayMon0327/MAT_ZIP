@@ -1,17 +1,15 @@
 package com.mat.zip.boss.controller;
 
 import com.google.gson.JsonObject;
-import com.mat.zip.boss.dao.Boss_memberDAO;
+import com.mat.zip.boss.dao.BossMemberDAO;
 import com.mat.zip.boss.dao.PaymentDAO;
-import com.mat.zip.boss.model.Boss_memberVO;
+import com.mat.zip.boss.model.BossMemberVO;
 import com.mat.zip.boss.model.PaymentVO;
 import com.mat.zip.boss.service.MemberAndPaymentService;
 import com.mat.zip.boss.service.PaymentService;
 
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
-
-import java.time.LocalDateTime;
 
 import javax.servlet.http.HttpSession;
 
@@ -27,7 +25,7 @@ public class PaymentController {
     @Autowired
     PaymentDAO dao;
     @Autowired
-    Boss_memberDAO bossdao;
+    BossMemberDAO bossdao;
     @Autowired
     MemberAndPaymentService memberAndPaymentService; //회원등록과 결제하기 트랜잭션
     @Autowired
@@ -75,7 +73,7 @@ public class PaymentController {
     public String innerJoinAndInsert(@RequestParam String store_id, HttpSession session, Model model) {
     	String user_id = (String) session.getAttribute("user_id");
     	System.out.println(user_id);
-    	Boss_memberVO member = new Boss_memberVO();
+    	BossMemberVO member = new BossMemberVO();
     	member.setUser_id(user_id);
     	member.setStore_id(store_id);
     	

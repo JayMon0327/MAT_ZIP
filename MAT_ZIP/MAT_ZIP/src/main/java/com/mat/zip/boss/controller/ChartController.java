@@ -18,12 +18,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mat.zip.boss.model.ChartVO;
-import com.mat.zip.boss.model.return_CustomerCountVO;
-import com.mat.zip.boss.model.return_OrderCountVO;
-import com.mat.zip.boss.model.return_OrderTotalVO;
+import com.mat.zip.boss.model.ReturnCustomerCountVO;
+import com.mat.zip.boss.model.ReturnOrderCountVO;
+import com.mat.zip.boss.model.ReturnOrderTotalVO;
 import com.mat.zip.boss.service.ChartService;
-import com.mat.zip.boss.service.SentimentService;
-import com.mat.zip.boss.service.boss_ReviewService;
+import com.mat.zip.boss.service.ChartSentimentService;
+import com.mat.zip.boss.service.ReviewAnalysisService;
 
 @Controller
 @RequestMapping("/boss")
@@ -36,9 +36,9 @@ public class ChartController {
         this.chartService = chartService;
     }
     @Autowired
-    private boss_ReviewService reviewService;
+    private ReviewAnalysisService reviewService;
     @Autowired
-    private SentimentService sentimentService;
+    private ChartSentimentService chartSentimentService;
     
   	//매출차트
     @GetMapping("/chart/{storeId}")
@@ -71,13 +71,13 @@ public class ChartController {
 	// 재방문 차트
 	 // 이번달,지난달 재방문율 차트 조회
 	    @GetMapping("returnCustomerCount/{storeId}")
-	    public ResponseEntity<Map<String, return_CustomerCountVO>> getReturnCustomerCount(@PathVariable String storeId) {
+	    public ResponseEntity<Map<String, ReturnCustomerCountVO>> getReturnCustomerCount(@PathVariable String storeId) {
 	        try {
 	            storeId = URLDecoder.decode(storeId, StandardCharsets.UTF_8.name());
 	        } catch (UnsupportedEncodingException e) {
 	            // 예외 처리
 	        }
-	        Map<String, return_CustomerCountVO> response = new HashMap<>();
+	        Map<String, ReturnCustomerCountVO> response = new HashMap<>();
 	        response.put("thisMonthNew", chartService.findthisMonthNewCustomers(storeId));
 	        response.put("thisMonthReturning", chartService.findthisMonthReturningCustomers(storeId));
 	        response.put("lastMonthNew", chartService.findLastMonthNewCustomers(storeId));
@@ -88,14 +88,14 @@ public class ChartController {
 	
 	    // 주문 횟수별 고객 수 조회
 	    @GetMapping("orderCount/{storeId}")
-	    public ResponseEntity<Map<String, return_OrderCountVO>> getOrderCount(@PathVariable String storeId){
+	    public ResponseEntity<Map<String, ReturnOrderCountVO>> getOrderCount(@PathVariable String storeId){
 	        try {
 	            storeId = URLDecoder.decode(storeId, StandardCharsets.UTF_8.name());
 	        } catch (UnsupportedEncodingException e) {
 	            // 예외 처리
 	        }
 	
-	        Map<String, return_OrderCountVO> response = new HashMap<>();
+	        Map<String, ReturnOrderCountVO> response = new HashMap<>();
 	        response.put("twoOrders", chartService.find2Customers(storeId));
 	        response.put("threeOrders", chartService.find3Customers(storeId));
 	        response.put("fourOrders", chartService.find4Customers(storeId));
@@ -106,14 +106,14 @@ public class ChartController {
 	
 	    // 이번달, 지난달 신규 고객과 재방문 고객의 주문 총액 조회
 	    @GetMapping("orderTotal/{storeId}")
-	    public ResponseEntity<Map<String, return_OrderTotalVO>> getOrderTotal(@PathVariable String storeId){
+	    public ResponseEntity<Map<String, ReturnOrderTotalVO>> getOrderTotal(@PathVariable String storeId){
 	        try {
 	            storeId = URLDecoder.decode(storeId, StandardCharsets.UTF_8.name());
 	        } catch (UnsupportedEncodingException e) {
 	            // 예외 처리
 	        }
 	
-	        Map<String, return_OrderTotalVO> response = new HashMap<>();
+	        Map<String, ReturnOrderTotalVO> response = new HashMap<>();
 	        response.put("thisMonthNewTotal", chartService.thisMonthNewCustomerOrderTotal(storeId));
 	        response.put("thisMonthReturnTotal", chartService.thisMonthReturnCustomerOrderTotal(storeId));
 	        response.put("lastMonthNewTotal", chartService.lastMonthNewCustomerOrderTotal(storeId));
@@ -143,7 +143,7 @@ public class ChartController {
 	        for (String reviewContent : reviewContents) {
 	            JSONObject requestBody = new JSONObject();
 	            requestBody.put("content", reviewContent);
-	            JSONObject analysisResult = sentimentService.analyze(requestBody.toString());
+	            JSONObject analysisResult = chartSentimentService.analyze(requestBody.toString());
 	            results.put(new JSONObject(analysisResult.toString()));
 	        }
 	        

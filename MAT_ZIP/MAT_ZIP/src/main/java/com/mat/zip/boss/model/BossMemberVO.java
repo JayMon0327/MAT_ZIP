@@ -2,7 +2,7 @@ package com.mat.zip.boss.model;
 
 import java.util.Date;
 
-public class Boss_memberVO {
+public class BossMemberVO {
 	private String user_id;
     private String password;
     private String store_id;

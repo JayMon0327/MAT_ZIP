@@ -10,18 +10,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.mat.zip.boss.dao.BoardDAO;
-import com.mat.zip.boss.dao.ComDAO;
+import com.mat.zip.boss.dao.ReplyDAO;
 import com.mat.zip.boss.model.BoardVO;
-import com.mat.zip.boss.model.ComVO;
+import com.mat.zip.boss.model.ReplyVO;
 
 @Controller // 스프링에서 제어하는 역할로 등록!
 @RequestMapping("/boss")
@@ -30,7 +27,7 @@ public class BoardController {
 	@Autowired
 	BoardDAO boardDAO;
 	@Autowired
-	ComDAO comDAO;
+	ReplyDAO replyDAO;
 
 	/**
 	 * 게시판 글 생성
@@ -87,10 +84,10 @@ public class BoardController {
 		System.out.println("상세페이지요청됨.");
 		BoardVO bag = boardDAO.one(board_id);
 		boardDAO.view(board_id);
-		List<ComVO> list = comDAO.list(board_id);
+		List<ReplyVO> list = replyDAO.list(board_id);
 		List<BoardVO> list2 = boardDAO.list(5,0);
 		//댓글개수가져오기 
-	    int commentCount = comDAO.getCommentCount(board_id);
+	    int commentCount = replyDAO.getCommentCount(board_id);
 	    
 		model.addAttribute("Com_list", list);
 		model.addAttribute("Board_list", list2);
@@ -112,7 +109,7 @@ public class BoardController {
 	    
 	 // 댓글 개수 가져오기
 	    for (BoardVO board : list) {
-	        int commentCount = comDAO.getCommentCount(board.getBoard_id());
+	        int commentCount = replyDAO.getCommentCount(board.getBoard_id());
 	        board.setCommentCount(commentCount);
 	    }
 	    

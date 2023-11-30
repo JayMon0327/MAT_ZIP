@@ -7,8 +7,8 @@
      별명을 지어서 사용 -->
    <typeAliases>
       <typeAlias type="com.mat.zip.boss.model.BoardVO" alias="boardVO"></typeAlias>
-      <typeAlias type="com.mat.zip.boss.model.ComVO" alias="ComVO"></typeAlias>
-      <typeAlias type="com.mat.zip.boss.model.Boss_memberVO" alias="boss_memberVO"></typeAlias>
+      <typeAlias type="com.mat.zip.boss.model.ReplyVO" alias="ComVO"></typeAlias>
+      <typeAlias type="com.mat.zip.boss.model.BossMemberVO" alias="boss_memberVO"></typeAlias>
       <typeAlias type="com.mat.zip.boss.model.MemberVO" alias="memberVO"></typeAlias>
       <typeAlias type="com.mat.zip.boss.model.PaymentVO" alias="paymentVO"></typeAlias>
       <typeAlias type="com.mat.zip.boss.model.ChartVO" alias="ChartVO"></typeAlias>

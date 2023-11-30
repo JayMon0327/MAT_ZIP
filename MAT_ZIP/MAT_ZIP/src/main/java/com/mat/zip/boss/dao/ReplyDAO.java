@@ -6,21 +6,21 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.mat.zip.boss.model.ComVO;
+import com.mat.zip.boss.model.ReplyVO;
 
 //테이블 하나당 DAO 하나 ! -->CUD를 완성 !! 
 @Component
-public class ComDAO {
+public class ReplyDAO {
 
 	@Autowired
 	SqlSessionTemplate my;
 
-	public int insert(ComVO bag) {
+	public int insert(ReplyVO bag) {
 		int result = my.insert("com.create", bag);
 		return result;
 	} //board_insertcom 에서 사용
 
-	public int update(ComVO bag) {
+	public int update(ReplyVO bag) {
 		int result = my.update("com.up", bag);
 		return result;
 	}
@@ -31,13 +31,13 @@ public class ComDAO {
 
 	}
 
-	public ComVO one(int board_id) {
-		ComVO bag = my.selectOne("com.one", board_id);
+	public ReplyVO one(int board_id) {
+		ReplyVO bag = my.selectOne("com.one", board_id);
 		return bag;
 	}// one
 
-	public List<ComVO> list(int board_id) {
-		List<ComVO> list = my.selectList("com.list", board_id);
+	public List<ReplyVO> list(int board_id) {
+		List<ReplyVO> list = my.selectList("com.list", board_id);
 		System.out.println(list.size());
 		return list;
 

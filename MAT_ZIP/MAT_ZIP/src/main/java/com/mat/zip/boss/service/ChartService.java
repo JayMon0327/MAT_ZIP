@@ -7,9 +7,9 @@ import org.springframework.stereotype.Service;
 
 import com.mat.zip.boss.dao.ChartDAO;
 import com.mat.zip.boss.model.ChartVO;
-import com.mat.zip.boss.model.return_CustomerCountVO;
-import com.mat.zip.boss.model.return_OrderCountVO;
-import com.mat.zip.boss.model.return_OrderTotalVO;
+import com.mat.zip.boss.model.ReturnCustomerCountVO;
+import com.mat.zip.boss.model.ReturnOrderCountVO;
+import com.mat.zip.boss.model.ReturnOrderTotalVO;
 
 @Service
 public class ChartService {
@@ -48,51 +48,51 @@ public class ChartService {
     
 //  재방문율 차트   
     // 이번달,지난달 재방문율 차트 조회
-    public return_CustomerCountVO findthisMonthNewCustomers(String storeId){
+    public ReturnCustomerCountVO findthisMonthNewCustomers(String storeId){
         return chartDAO.findthisMonthNewCustomers(storeId);
     }
 
-    public return_CustomerCountVO findthisMonthReturningCustomers(String storeId){
+    public ReturnCustomerCountVO findthisMonthReturningCustomers(String storeId){
         return chartDAO.findthisMonthReturningCustomers(storeId);
     }
-    public return_CustomerCountVO findLastMonthNewCustomers(String storeId){
+    public ReturnCustomerCountVO findLastMonthNewCustomers(String storeId){
     	return chartDAO.findLastMonthNewCustomers(storeId);
     }
     
-    public return_CustomerCountVO findLastMonthReturningCustomers(String storeId){
+    public ReturnCustomerCountVO findLastMonthReturningCustomers(String storeId){
     	return chartDAO.findLastMonthReturningCustomers(storeId);
     }
 
     // 주문 횟수별 고객 수 조회
-    public return_OrderCountVO find2Customers(String storeId){
+    public ReturnOrderCountVO find2Customers(String storeId){
         return chartDAO.find2Customers(storeId);
     }
 
-    public return_OrderCountVO find3Customers(String storeId){
+    public ReturnOrderCountVO find3Customers(String storeId){
         return chartDAO.find3Customers(storeId);
     }
 
-    public return_OrderCountVO find4Customers(String storeId){
+    public ReturnOrderCountVO find4Customers(String storeId){
         return chartDAO.find4Customers(storeId);
     }
 
-    public return_OrderCountVO find5Customers(String storeId){
+    public ReturnOrderCountVO find5Customers(String storeId){
         return chartDAO.find5Customers(storeId);
     }
 
  // 이번달, 지난달 신규 고객과 재방문 고객의 주문 총액 조회
-    public return_OrderTotalVO thisMonthNewCustomerOrderTotal(String storeId){
+    public ReturnOrderTotalVO thisMonthNewCustomerOrderTotal(String storeId){
         return chartDAO.thisMonthNewCustomerOrderTotal(storeId);
     }
 
-    public return_OrderTotalVO thisMonthReturnCustomerOrderTotal(String storeId){
+    public ReturnOrderTotalVO thisMonthReturnCustomerOrderTotal(String storeId){
         return chartDAO.thisMonthReturnCustomerOrderTotal(storeId);
     }
-    public return_OrderTotalVO lastMonthNewCustomerOrderTotal(String storeId){
+    public ReturnOrderTotalVO lastMonthNewCustomerOrderTotal(String storeId){
     	return chartDAO.lastMonthNewCustomerOrderTotal(storeId);
     }
     
-    public return_OrderTotalVO lastMonthReturnCustomerOrderTotal(String storeId){
+    public ReturnOrderTotalVO lastMonthReturnCustomerOrderTotal(String storeId){
     	return chartDAO.lastMonthReturnCustomerOrderTotal(storeId);
     }
 }

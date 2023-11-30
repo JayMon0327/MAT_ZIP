@@ -1,6 +1,6 @@
 package com.mat.zip.boss.model;
 
-public class return_OrderTotalVO {
+public class ReturnOrderTotalVO {
 
 	private String store_id;
 	private int newOrdersThisMonth;

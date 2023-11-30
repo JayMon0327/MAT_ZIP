@@ -4,12 +4,12 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.mat.zip.boss.dao.boss_ReviewDAO;
+import com.mat.zip.boss.dao.ReviewAnalysisDAO;
 
 import java.util.List;
 
 @Repository
-public class boss_ReviewDAOImpl implements boss_ReviewDAO {
+public class ReviewAnalysisDAOImpl implements ReviewAnalysisDAO {
     @Autowired
     private SqlSession sqlSession;
 

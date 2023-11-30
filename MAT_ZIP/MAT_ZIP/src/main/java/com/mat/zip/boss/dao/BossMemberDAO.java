@@ -1,29 +1,21 @@
 package com.mat.zip.boss.dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.mat.zip.boss.model.Boss_memberVO;
+import com.mat.zip.boss.model.BossMemberVO;
 
 @Component
-public class Boss_memberDAO { // CRUD
+public class BossMemberDAO { // CRUD
 	@Autowired
 	SqlSessionTemplate my;
 
-	public void innerJoinAndInsert(Boss_memberVO bag) {
+	public void innerJoinAndInsert(BossMemberVO bag) {
         my.insert("boss.insertJoinedData", bag);
     }
 
-	public Boss_memberVO login(Boss_memberVO bag) {
+	public BossMemberVO login(BossMemberVO bag) {
 		return my.selectOne("boss.boss_login", bag);
 		
 	}
