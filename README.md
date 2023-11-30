@@ -52,47 +52,48 @@
         🔻📁boss
             🔻📁controller
                 BoardController.java
+                ReplyController.java
                 MemberController.java
                 ChartController.java
-                ReplyController.java
                 PaymentController.java 
             🔻📁dao
                 BoardDAO.java
-                BossMemberDAO.java
-                ChartDAO.java
                 ReplyDAO.java
                 MemberDAO.java
-                PaymentDAO.java
+                BossMemberDAO.java
+                ChartDAO.java
                 ReviewAnalysisDAO.java
+                PaymentDAO.java
                 🔻📁implementations
                     ReviewAnalysisDAOImpl.java
             🔻📁model
                 BoardVO.java
-                BossMemberVO.java
-                ChartVO.java
-                ReplyVO.java
                 BoardLikesVO.java
+                ReplyVO.java
+                BossMemberVO.java
                 MemberVO.java
-                PaymentResponseVO.java
-                PaymentVO.java
+                ChartVO.java
                 ReturnCustomerCountVO.java
                 ReturnOrderCountVO.java
                 ReturnOrderTotalVO.java
+                PaymentResponseVO.java
+                PaymentVO.java
+
             🔻📁service
-                MemberAndPaymentService.java
                 ChartService.java
-                PaymentService.java
                 ChartSentimentService.java
                 ReviewAnalysisService.java
+                PaymentService.java
+                MemberAndPaymentService.java
                 🔻📁Implementations
                     ReviewAnalysisServiceImpl.java
     🔻📁resources
         🔻📁mapper
             BoardMapper.xml
+            ReplyMapper.xml
             BossMapper.xml
             ChartMapper.xml
             ReviewAnalysisMapper.xml
-            ReplyMapper.xml
             PaymentMapper.xml
 
 <br />
