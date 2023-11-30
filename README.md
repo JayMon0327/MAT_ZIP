@@ -45,7 +45,80 @@
 
 <br>
 
-## 3. 기능 구현
+## 3. 프로젝트 구조
+```
+🔻📁main
+    🔻📁java
+        🔻📁boss
+            🔻📁controller
+                BoardController.java
+                Boss_memberController.java
+                ChartController.java
+                ComController.java
+                PaymentController.java 
+            🔻📁dao
+                BoardDAO.java
+                Boss_memberDAO.java
+                ChartDAO.java
+                ComDAO.java
+                MemberDAO.java
+                PaymentDAO.java
+                boss_ReviewDAO.java
+                🔻📁implementations
+                    boss_ReviewDAOImpl.java
+            🔻📁model
+                BoardVO.java
+                Boss_memberVO.java
+                ChartVO.java
+                ComVO.java
+                LikesVO.java
+                MemberVO.java
+                PaymentResponse.java
+                PaymentVO.java
+                return_CustomerCountVO.java
+                return_OrderCountVO.java
+                return_OrderTotalVO.java
+            🔻📁service
+                MemberAndPaymentService.java
+                ChartService.java
+                PaymentService.java
+                SentimentService.java
+                boss_ReviewService.java
+                🔻📁Implementations
+                    boss_ReviewServiceImpl.java
+    🔻📁resources
+        🔻📁mapper
+            BoardMapper.xml
+            BossMapper.xml
+            ChartMapper.xml
+            Chart_reviewMapper.xml
+            ComMapper.xml
+            PaymentMapper.xml
+    🔻📁webapp
+        🔻📁WEB-INF
+            🔻📁views
+                🔻📁boss
+                    board_detail.jsp
+                    board_insert.jsp
+                    board_delete.jsp
+                    board_insertcom.jsp
+                    board_list.jsp
+                    board_search.jsp
+                    board_update.jsp
+                    tossFail.jsp
+                    tossSuccess.jsp
+        🔻📁boss
+            boardInsert.jsp
+            boardUpdate.jsp
+            board_index.jsp
+            boss_chart.jsp
+            boss_login.jsp
+            boss_member.jsp
+            paymentTest.jsp
+```
+<br />
+
+## 4. 기능 구현
 * #### `[이후성] 사장 커뮤니티`
   * 토스 페이 API를 이용한 트랜잭션 구독결제 시스템과 예외처리
   * Ajax와 Restful 방식으로 게시판 게시글 생성, 수정, 삭제, 검색 기능, '좋아요' 기능과 페이징 기능
@@ -60,7 +133,7 @@
 <br>
 
 
-## 4. ERD 설계
+## 5. ERD 설계
 <img src="https://user-images.githubusercontent.com/123634960/242927505-6d8c1885-fd63-41a2-84c7-c521fcce39e7.png">
 
 <br>
