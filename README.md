@@ -52,70 +52,51 @@
         🔻📁boss
             🔻📁controller
                 BoardController.java
-                Boss_memberController.java
+                ReplyController.java
+                MemberController.java
                 ChartController.java
-                ComController.java
                 PaymentController.java 
             🔻📁dao
                 BoardDAO.java
-                Boss_memberDAO.java
-                ChartDAO.java
-                ComDAO.java
+                ReplyDAO.java
                 MemberDAO.java
+                BossMemberDAO.java
+                ChartDAO.java
+                ReviewAnalysisDAO.java
                 PaymentDAO.java
-                boss_ReviewDAO.java
                 🔻📁implementations
-                    boss_ReviewDAOImpl.java
+                    ReviewAnalysisDAOImpl.java
             🔻📁model
                 BoardVO.java
-                Boss_memberVO.java
-                ChartVO.java
-                ComVO.java
-                LikesVO.java
+                BoardLikesVO.java
+                ReplyVO.java
+                BossMemberVO.java
                 MemberVO.java
-                PaymentResponse.java
+                ChartVO.java
+                ReturnCustomerCountVO.java
+                ReturnOrderCountVO.java
+                ReturnOrderTotalVO.java
+                PaymentResponseVO.java
                 PaymentVO.java
-                return_CustomerCountVO.java
-                return_OrderCountVO.java
-                return_OrderTotalVO.java
+
             🔻📁service
-                MemberAndPaymentService.java
                 ChartService.java
+                ChartSentimentService.java
+                ReviewAnalysisService.java
                 PaymentService.java
-                SentimentService.java
-                boss_ReviewService.java
+                MemberAndPaymentService.java
                 🔻📁Implementations
-                    boss_ReviewServiceImpl.java
+                    ReviewAnalysisServiceImpl.java
     🔻📁resources
         🔻📁mapper
             BoardMapper.xml
+            ReplyMapper.xml
             BossMapper.xml
             ChartMapper.xml
-            Chart_reviewMapper.xml
-            ComMapper.xml
+            ReviewAnalysisMapper.xml
             PaymentMapper.xml
-    🔻📁webapp
-        🔻📁WEB-INF
-            🔻📁views
-                🔻📁boss
-                    board_detail.jsp
-                    board_insert.jsp
-                    board_delete.jsp
-                    board_insertcom.jsp
-                    board_list.jsp
-                    board_search.jsp
-                    board_update.jsp
-                    tossFail.jsp
-                    tossSuccess.jsp
-        🔻📁boss
-            boardInsert.jsp
-            boardUpdate.jsp
-            board_index.jsp
-            boss_chart.jsp
-            boss_login.jsp
-            boss_member.jsp
-            paymentTest.jsp
 ```
+
 <br />
 
 ## 4. 기능 구현
