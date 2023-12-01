@@ -39,17 +39,17 @@ public class ChartDAO {
         return sqlSession.selectList("chartMapper.XTotalAmount", storeId);
     }
 
-    //  이번달 총 매출
+    // 이번달 총 매출
     public List<ChartVO> thisMonthTotalAmount(String storeId) {
         return sqlSession.selectList("chartMapper.thisMonthTotalAmount", storeId);
     }
 
-    //  저번달 총 매출
+    // 저번달 총 매출
     public List<ChartVO> lastMonthTotalAmount(String storeId) {
         return sqlSession.selectList("chartMapper.lastMonthTotalAmount", storeId);
     }
 
-    //	2달전 총 매출
+    // 2달전 총 매출
     public List<ChartVO> twoMonthsAgoTotalAmount(String storeId) {
         return sqlSession.selectList("chartMapper.twoMonthsAgoTotalAmount", storeId);
     }

@@ -22,8 +22,8 @@ import com.mat.zip.boss.model.ReturnCustomerCountVO;
 import com.mat.zip.boss.model.ReturnOrderCountVO;
 import com.mat.zip.boss.model.ReturnOrderTotalVO;
 import com.mat.zip.boss.service.ChartService;
-import com.mat.zip.boss.service.ChartSentimentService;
 import com.mat.zip.boss.service.ReviewAnalysisService;
+import com.mat.zip.boss.service.ReviewTransferService;
 
 @Controller
 @RequestMapping("/boss")
@@ -37,9 +37,9 @@ public class ChartController {
     }
 
     @Autowired
-    private ReviewAnalysisService reviewService;
+    private ReviewTransferService reviewService;
     @Autowired
-    private ChartSentimentService chartSentimentService;
+    private ReviewAnalysisService reviewAnalysisService;
 
     /**
      * 매출차트
@@ -51,7 +51,7 @@ public class ChartController {
         try {
             storeId = URLDecoder.decode(storeId, StandardCharsets.UTF_8.name());
         } catch (UnsupportedEncodingException e) {
-            // 예외 처리
+            return throw new RuntimeException("id가 없습니다");
         }
         List<ChartVO> chartData = chartService.DailyTotalAmount(storeId);
         List<ChartVO> chartDataX = chartService.XTotalAmount(storeId);
@@ -80,7 +80,7 @@ public class ChartController {
         try {
             storeId = URLDecoder.decode(storeId, StandardCharsets.UTF_8.name());
         } catch (UnsupportedEncodingException e) {
-            // 예외 처리
+            throw new RuntimeException();
         }
         Map<String, ReturnCustomerCountVO> response = new HashMap<>();
         response.put("thisMonthNew", chartService.findthisMonthNewCustomers(storeId));
@@ -97,7 +97,7 @@ public class ChartController {
         try {
             storeId = URLDecoder.decode(storeId, StandardCharsets.UTF_8.name());
         } catch (UnsupportedEncodingException e) {
-            // 예외 처리
+            throw new RuntimeException("id가 없습니다");
         }
 
         Map<String, ReturnOrderCountVO> response = new HashMap<>();
@@ -115,7 +115,7 @@ public class ChartController {
         try {
             storeId = URLDecoder.decode(storeId, StandardCharsets.UTF_8.name());
         } catch (UnsupportedEncodingException e) {
-            // 예외 처리
+            throw new RuntimeException("id가 없습니다");
         }
 
         Map<String, ReturnOrderTotalVO> response = new HashMap<>();
@@ -142,13 +142,12 @@ public class ChartController {
         }
         List<String> reviewContents = reviewService.TotalReview(storeId);
 
-        // json형태로 바꿔서 api service요청보내기
         JSONArray results = new JSONArray();
 
         for (String reviewContent : reviewContents) {
             JSONObject requestBody = new JSONObject();
             requestBody.put("content", reviewContent);
-            JSONObject analysisResult = chartSentimentService.analyze(requestBody.toString());
+            JSONObject analysisResult = reviewAnalysisService.analyze(requestBody.toString());
             results.put(new JSONObject(analysisResult.toString()));
         }
         return results.toString();

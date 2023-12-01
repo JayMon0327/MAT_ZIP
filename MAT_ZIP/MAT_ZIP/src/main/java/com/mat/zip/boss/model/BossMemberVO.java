@@ -10,7 +10,6 @@ public class BossMemberVO {
     private Date regdate;
     private String nickname;
 
-    // getters and setters
     public String getUser_id() {
         return user_id;
     }

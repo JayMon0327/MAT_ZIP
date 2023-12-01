@@ -7,7 +7,6 @@ public class PaymentVO {
     private String orderName;
     private int amount;
 
-    // getter, setter, toString methods
     public String getStoreId() {
         return storeId;
     }

@@ -5,7 +5,6 @@ public class LikesVO {
     private String user_id;
     private int board_id;
 
-    // getters and setters
     public String getUser_id() {
         return user_id;
     }

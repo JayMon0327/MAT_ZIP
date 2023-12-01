@@ -32,7 +32,6 @@ public class PaymentService {
             httpPost.setEntity(entity);
             HttpResponse response = client.execute(httpPost);
 
-            // 결제 처리 성공 시 JsonObject를 반환
             if (response.getStatusLine().getStatusCode() == 200) {
                 HttpEntity responseEntity = response.getEntity();
                 String responseBody = EntityUtils.toString(responseEntity);
@@ -42,7 +41,6 @@ public class PaymentService {
             e.printStackTrace();
         }
 
-        // 결제 처리 실패 시 null을 반환
         return null;
     }
 

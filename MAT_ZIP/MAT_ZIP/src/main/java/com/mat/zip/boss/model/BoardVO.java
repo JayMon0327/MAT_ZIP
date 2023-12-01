@@ -14,8 +14,6 @@ public class BoardVO {
     private boolean liked;
     private int commentCount;
 
-    // getters and setters
-
     public void setCommentCount(int commentCount) {
         this.commentCount = commentCount;
     }

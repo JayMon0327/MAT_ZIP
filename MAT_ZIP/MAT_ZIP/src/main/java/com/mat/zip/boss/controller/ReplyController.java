@@ -42,8 +42,7 @@ public class ReplyController {
         if (currentUserId.equals(existingComment.getWriter())) {
             replyDAO.update(bag);
         } else {
-            // 현재 사용자가 댓글 작성자와 일치하지 않는 경우 예외를 발생시킵니다.
-            throw new RuntimeException("Only the original author can edit the comment.");
+            throw new RuntimeException("현재사용자와 댓글사용자가 일치하지 않습니다.");
         }
     }
 
@@ -54,8 +53,7 @@ public class ReplyController {
         if (currentUserId.equals(existingComment.getWriter())) {
             replyDAO.delete(reply_id);
         } else {
-            // 현재 사용자가 댓글 작성자와 일치하지 않는 경우 예외를 발생시킵니다.
-            throw new RuntimeException("Only the original author can delete the comment.");
+            throw new RuntimeException("현재 사용자가 댓글 작성자와 일치하지 않습니다");
         }
     }
 

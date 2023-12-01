@@ -27,9 +27,9 @@ public class PaymentController {
     @Autowired
     BossMemberDAO bossdao;
     @Autowired
-    MemberAndPaymentService memberAndPaymentService; //회원등록과 결제하기 트랜잭션
+    MemberAndPaymentService memberAndPaymentService;
     @Autowired
-    HttpSession session;  // 세션을 사용하기 위해 주입
+    HttpSession session;
 
     /**
      * 결제 전 중복체크
@@ -85,7 +85,6 @@ public class PaymentController {
 
         memberAndPaymentService.registerAndPay(member);
 
-        //성공시 사장세션부여
         String boss_id = member.getUser_id();
         session.setAttribute("boss_id", boss_id);
 
@@ -100,7 +99,7 @@ public class PaymentController {
         bag.setStoreId(parts[0]);  // storeId에 parts[0] 설정
         bag.setOrderName(parts[1]);  // orderName에 parts[1] 설정
 
-        String userId = (String) session.getAttribute("user_id"); // 세션에서 user_id를 가져옴
+        String userId = (String) session.getAttribute("user_id");
         bag.setOrderId(userId);
         dao.insert(bag);
         return ResponseEntity.ok().body("결제 정보가 성공적으로 전송되었습니다.");

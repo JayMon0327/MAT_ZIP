@@ -39,12 +39,12 @@ public class ChartService {
         return chartDAO.XTotalAmount(storeId);
     }
 
-    //  이번달 총 매출
+    // 이번달 총 매출
     public List<ChartVO> thisMonthTotalAmount(String storeId) {
         return chartDAO.thisMonthTotalAmount(storeId);
     }
 
-    //  저번달 총 매출
+    // 저번달 총 매출
     public List<ChartVO> lastMonthTotalAmount(String storeId) {
         return chartDAO.lastMonthTotalAmount(storeId);
     }

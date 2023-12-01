@@ -17,7 +17,7 @@ import com.mat.zip.boss.dao.ReplyDAO;
 import com.mat.zip.boss.model.BoardVO;
 import com.mat.zip.boss.model.ReplyVO;
 
-@Controller // 스프링에서 제어하는 역할로 등록!
+@Controller
 @RequestMapping("/boss")
 public class BoardController {
 
@@ -42,13 +42,12 @@ public class BoardController {
     public String update(@ModelAttribute BoardVO bag, HttpSession session, Model model) {
         boardDAO.update(bag);
         model.addAttribute("bag", bag);
-        // 이전 페이지로 리다이렉트
         String prevPage = (String) session.getAttribute("prevPage");
         if (prevPage != null) {
             return "redirect:board_index.jsp";
         } else {
             // 이전 페이지 정보가 없는 경우, 기본 페이지로 리다이렉트
-            return "forward:board_index.jsp"; // 이 부분은 원하는 기본 페이지 URL로 변경하세요
+            return "forward:board_index.jsp";
         }
     }
 
@@ -68,7 +67,7 @@ public class BoardController {
     @GetMapping("/Board_search")
     public void search(String keyword, Model model) {
         List<BoardVO> list = boardDAO.searchByTitleOrContent(keyword);
-        model.addAttribute("list", list); // attribute 이름을 'bag'에서 'list'로 변경
+        model.addAttribute("list", list);
     }
 
     /**
@@ -80,7 +79,6 @@ public class BoardController {
         boardDAO.view(board_id);
         List<ReplyVO> list = replyDAO.list(board_id);
         List<BoardVO> list2 = boardDAO.list(5, 0);
-        //댓글개수가져오기
         int commentCount = replyDAO.getCommentCount(board_id);
 
         model.addAttribute("Com_list", list);
