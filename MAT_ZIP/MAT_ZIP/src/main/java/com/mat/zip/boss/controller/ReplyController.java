@@ -7,6 +7,9 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.mat.zip.boss.dao.BoardDAO;
@@ -17,69 +20,60 @@ import com.mat.zip.boss.model.ReplyVO;
 @Controller
 public class ReplyController {
 
-	@Autowired
-	ReplyDAO replyDAO;
-	@Autowired
-	BoardDAO BoardDAO;
+    @Autowired
+    ReplyDAO replyDAO;
+    @Autowired
+    BoardDAO BoardDAO;
 
-	// 댓글 등록
-	@RequestMapping("/boss/Board_insertcom")
-	public void insert(ReplyVO bag, int board_id, Model model) {
-		List<ReplyVO> list = replyDAO.list(board_id);
-		System.out.println("insert요청됨.");
-		System.out.println(bag);
-		model.addAttribute("Com_list", list);
-		replyDAO.insert(bag);
-	}
+    /**
+     * 댓글
+     */
+    @RequestMapping("/boss/Board_insertcom")
+    public void insert(ReplyVO bag, int board_id, Model model) {
+        List<ReplyVO> list = replyDAO.list(board_id);
+        model.addAttribute("Com_list", list);
+        replyDAO.insert(bag);
+    }
 
-	// 댓글 수정
-	@RequestMapping("/boss/Com_update")
-	public void update(ReplyVO bag, HttpSession session) {
-		String currentUserId = (String) session.getAttribute("user_id");
-		ReplyVO existingComment = replyDAO.one(bag.getReply_id());
-		if (currentUserId.equals(existingComment.getWriter())) {
-			System.out.println("update요청됨.");
-			System.out.println(bag);
-			replyDAO.update(bag);
-		} else {
-			// 현재 사용자가 댓글 작성자와 일치하지 않는 경우 예외를 발생시킵니다.
-			throw new RuntimeException("Only the original author can edit the comment.");
-		}
-	}
+    @PutMapping("/boss/Com_update")
+    public void update(ReplyVO bag, HttpSession session) {
+        String currentUserId = (String) session.getAttribute("user_id");
+        ReplyVO existingComment = replyDAO.one(bag.getReply_id());
+        if (currentUserId.equals(existingComment.getWriter())) {
+            replyDAO.update(bag);
+        } else {
+            // 현재 사용자가 댓글 작성자와 일치하지 않는 경우 예외를 발생시킵니다.
+            throw new RuntimeException("Only the original author can edit the comment.");
+        }
+    }
 
-	@RequestMapping("/boss/Com_delete")
-	public void delete(int reply_id, HttpSession session) {
-		String currentUserId = (String) session.getAttribute("user_id");
-		ReplyVO existingComment = replyDAO.one(reply_id);
-		if (currentUserId.equals(existingComment.getWriter())) {
-			System.out.println("delete요청됨.");
-			System.out.println(reply_id);
-			replyDAO.delete(reply_id);
-		} else {
-			// 현재 사용자가 댓글 작성자와 일치하지 않는 경우 예외를 발생시킵니다.
-			throw new RuntimeException("Only the original author can delete the comment.");
-		}
-	}
+    @DeleteMapping("/boss/Com_delete")
+    public void delete(int reply_id, HttpSession session) {
+        String currentUserId = (String) session.getAttribute("user_id");
+        ReplyVO existingComment = replyDAO.one(reply_id);
+        if (currentUserId.equals(existingComment.getWriter())) {
+            replyDAO.delete(reply_id);
+        } else {
+            // 현재 사용자가 댓글 작성자와 일치하지 않는 경우 예외를 발생시킵니다.
+            throw new RuntimeException("Only the original author can delete the comment.");
+        }
+    }
 
-	@RequestMapping("Com_one")
-	public void one(int Com_id, Model model) {
-		System.out.println("one요청됨.");
-		ReplyVO bag = replyDAO.one(Com_id);
-		System.out.println(bag);
-		model.addAttribute("bag", bag);
-	}
-	
-	@RequestMapping("Board_view")
-	public String view(BoardVO bag, Model model, int board_id) {
-	    // 게시글 정보를 불러옴
-	    BoardVO board = BoardDAO.one(board_id);
-	    model.addAttribute("bag", board);
-	  
-	    // 해당 게시글의 댓글 목록을 불러옴
-	    List<ReplyVO> list = replyDAO.list(board_id);
-	    model.addAttribute("Com_list", list);
-	  
-	    return "Board_detail";
-	}
+    @GetMapping("Com_one")
+    public void one(int Com_id, Model model) {
+        ReplyVO bag = replyDAO.one(Com_id);
+        model.addAttribute("bag", bag);
+    }
+
+    @GetMapping("Board_view")
+    public String view(BoardVO bag, Model model, int board_id) {
+        BoardVO board = BoardDAO.one(board_id);
+        model.addAttribute("bag", board);
+
+        List<ReplyVO> list = replyDAO.list(board_id);
+        model.addAttribute("Com_list", list);
+
+        return "Board_detail";
+    }
 
 }

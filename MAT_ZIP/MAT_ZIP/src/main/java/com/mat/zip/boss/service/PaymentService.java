@@ -17,10 +17,10 @@ import java.util.Base64;
 
 @Service
 public class PaymentService {
-	
-	
+
+
     public JsonObject processPayment(String paymentKey, int amount, String orderId) {
-        String secretKey = "test_sk_ODnyRpQWGrNP2J6GZve3Kwv1M9EN"; 
+        String secretKey = "test_sk_ODnyRpQWGrNP2J6GZve3Kwv1M9EN";
         String encodedSecretKey = Base64.getEncoder().encodeToString((secretKey + ":").getBytes());
 
         try (CloseableHttpClient client = HttpClients.createDefault()) {
@@ -45,8 +45,8 @@ public class PaymentService {
         // 결제 처리 실패 시 null을 반환
         return null;
     }
-    
-  
+
+
 }
 
 

@@ -3,9 +3,9 @@ package com.mat.zip.boss.controller;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,16 +35,19 @@ public class ChartController {
     public ChartController(ChartService chartService) {
         this.chartService = chartService;
     }
+
     @Autowired
     private ReviewAnalysisService reviewService;
     @Autowired
     private ChartSentimentService chartSentimentService;
-    
-  	//매출차트
+
+    /**
+     * 매출차트
+     */
     @GetMapping("/chart/{storeId}")
     @ResponseBody
     public Map<String, List<ChartVO>> getChart(@PathVariable String storeId) {
-    	//세션에서 받아온 인코딩된 storeId 디코딩처리 
+        //세션에서 받아온 인코딩된 storeId 디코딩처리
         try {
             storeId = URLDecoder.decode(storeId, StandardCharsets.UTF_8.name());
         } catch (UnsupportedEncodingException e) {
@@ -64,91 +67,92 @@ public class ChartController {
         response.put("thisMonthTotal", thisMonthTotal);
         response.put("lastMonthTotal", lastMonthTotal);
         response.put("twoMonthsAgoTotal", twoMonthsAgoTotal);
-        
+
         return response;
     }
-    
-	// 재방문 차트
-	 // 이번달,지난달 재방문율 차트 조회
-	    @GetMapping("returnCustomerCount/{storeId}")
-	    public ResponseEntity<Map<String, ReturnCustomerCountVO>> getReturnCustomerCount(@PathVariable String storeId) {
-	        try {
-	            storeId = URLDecoder.decode(storeId, StandardCharsets.UTF_8.name());
-	        } catch (UnsupportedEncodingException e) {
-	            // 예외 처리
-	        }
-	        Map<String, ReturnCustomerCountVO> response = new HashMap<>();
-	        response.put("thisMonthNew", chartService.findthisMonthNewCustomers(storeId));
-	        response.put("thisMonthReturning", chartService.findthisMonthReturningCustomers(storeId));
-	        response.put("lastMonthNew", chartService.findLastMonthNewCustomers(storeId));
-	        response.put("lastMonthReturning", chartService.findLastMonthReturningCustomers(storeId));
-	
-	        return new ResponseEntity<>(response, HttpStatus.OK);
-	    }
-	
-	    // 주문 횟수별 고객 수 조회
-	    @GetMapping("orderCount/{storeId}")
-	    public ResponseEntity<Map<String, ReturnOrderCountVO>> getOrderCount(@PathVariable String storeId){
-	        try {
-	            storeId = URLDecoder.decode(storeId, StandardCharsets.UTF_8.name());
-	        } catch (UnsupportedEncodingException e) {
-	            // 예외 처리
-	        }
-	
-	        Map<String, ReturnOrderCountVO> response = new HashMap<>();
-	        response.put("twoOrders", chartService.find2Customers(storeId));
-	        response.put("threeOrders", chartService.find3Customers(storeId));
-	        response.put("fourOrders", chartService.find4Customers(storeId));
-	        response.put("fiveOrders", chartService.find5Customers(storeId));
-	
-	        return new ResponseEntity<>(response, HttpStatus.OK);
-	    }
-	
-	    // 이번달, 지난달 신규 고객과 재방문 고객의 주문 총액 조회
-	    @GetMapping("orderTotal/{storeId}")
-	    public ResponseEntity<Map<String, ReturnOrderTotalVO>> getOrderTotal(@PathVariable String storeId){
-	        try {
-	            storeId = URLDecoder.decode(storeId, StandardCharsets.UTF_8.name());
-	        } catch (UnsupportedEncodingException e) {
-	            // 예외 처리
-	        }
-	
-	        Map<String, ReturnOrderTotalVO> response = new HashMap<>();
-	        response.put("thisMonthNewTotal", chartService.thisMonthNewCustomerOrderTotal(storeId));
-	        response.put("thisMonthReturnTotal", chartService.thisMonthReturnCustomerOrderTotal(storeId));
-	        response.put("lastMonthNewTotal", chartService.lastMonthNewCustomerOrderTotal(storeId));
-	        response.put("lastMonthReturnTotal", chartService.lastMonthReturnCustomerOrderTotal(storeId));
-	
-	        return new ResponseEntity<>(response, HttpStatus.OK);
-	    }
-	    
-	    
-	    // 리뷰 감정분석 차트
-	    @GetMapping(value = "/analyze/{storeId}", produces = "application/json; charset=UTF-8")
-	    @ResponseBody
-	    public String analyzeReviews(@PathVariable String storeId) {
-	    	//세션에서 받아온 storeId 디코딩
-	        try {
-	            storeId = URLDecoder.decode(storeId, StandardCharsets.UTF_8.name()); 
-	        } catch (UnsupportedEncodingException e) {
-	            e.printStackTrace();
-	        }
-	        System.out.println(storeId);
-	        // 리뷰 데이터 받아오기 
-	        List<String> reviewContents = reviewService.TotalReview(storeId);
 
-	        // json형태로 바꿔서 api service요청보내기
-	        JSONArray results = new JSONArray();
+    /**
+     * 재방문 차트
+     */
+    // 이번달,지난달 재방문율 차트 조회
+    @GetMapping("returnCustomerCount/{storeId}")
+    public ResponseEntity<Map<String, ReturnCustomerCountVO>> getReturnCustomerCount(@PathVariable String storeId) {
+        try {
+            storeId = URLDecoder.decode(storeId, StandardCharsets.UTF_8.name());
+        } catch (UnsupportedEncodingException e) {
+            // 예외 처리
+        }
+        Map<String, ReturnCustomerCountVO> response = new HashMap<>();
+        response.put("thisMonthNew", chartService.findthisMonthNewCustomers(storeId));
+        response.put("thisMonthReturning", chartService.findthisMonthReturningCustomers(storeId));
+        response.put("lastMonthNew", chartService.findLastMonthNewCustomers(storeId));
+        response.put("lastMonthReturning", chartService.findLastMonthReturningCustomers(storeId));
 
-	        for (String reviewContent : reviewContents) {
-	            JSONObject requestBody = new JSONObject();
-	            requestBody.put("content", reviewContent);
-	            JSONObject analysisResult = chartSentimentService.analyze(requestBody.toString());
-	            results.put(new JSONObject(analysisResult.toString()));
-	        }
-	        
-	        return results.toString();
-	    }
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    // 주문 횟수별 고객 수 조회
+    @GetMapping("orderCount/{storeId}")
+    public ResponseEntity<Map<String, ReturnOrderCountVO>> getOrderCount(@PathVariable String storeId) {
+        try {
+            storeId = URLDecoder.decode(storeId, StandardCharsets.UTF_8.name());
+        } catch (UnsupportedEncodingException e) {
+            // 예외 처리
+        }
+
+        Map<String, ReturnOrderCountVO> response = new HashMap<>();
+        response.put("twoOrders", chartService.find2Customers(storeId));
+        response.put("threeOrders", chartService.find3Customers(storeId));
+        response.put("fourOrders", chartService.find4Customers(storeId));
+        response.put("fiveOrders", chartService.find5Customers(storeId));
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    // 이번달, 지난달 신규 고객과 재방문 고객의 주문 총액 조회
+    @GetMapping("orderTotal/{storeId}")
+    public ResponseEntity<Map<String, ReturnOrderTotalVO>> getOrderTotal(@PathVariable String storeId) {
+        try {
+            storeId = URLDecoder.decode(storeId, StandardCharsets.UTF_8.name());
+        } catch (UnsupportedEncodingException e) {
+            // 예외 처리
+        }
+
+        Map<String, ReturnOrderTotalVO> response = new HashMap<>();
+        response.put("thisMonthNewTotal", chartService.thisMonthNewCustomerOrderTotal(storeId));
+        response.put("thisMonthReturnTotal", chartService.thisMonthReturnCustomerOrderTotal(storeId));
+        response.put("lastMonthNewTotal", chartService.lastMonthNewCustomerOrderTotal(storeId));
+        response.put("lastMonthReturnTotal", chartService.lastMonthReturnCustomerOrderTotal(storeId));
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+
+    /**
+     * 리뷰 감정분석 차트
+     */
+    @GetMapping(value = "/analyze/{storeId}", produces = "application/json; charset=UTF-8")
+    @ResponseBody
+    public String analyzeReviews(@PathVariable String storeId) {
+        //세션에서 받아온 storeId 디코딩
+        try {
+            storeId = URLDecoder.decode(storeId, StandardCharsets.UTF_8.name());
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        List<String> reviewContents = reviewService.TotalReview(storeId);
+
+        // json형태로 바꿔서 api service요청보내기
+        JSONArray results = new JSONArray();
+
+        for (String reviewContent : reviewContents) {
+            JSONObject requestBody = new JSONObject();
+            requestBody.put("content", reviewContent);
+            JSONObject analysisResult = chartSentimentService.analyze(requestBody.toString());
+            results.put(new JSONObject(analysisResult.toString()));
+        }
+        return results.toString();
+    }
 
 }
 

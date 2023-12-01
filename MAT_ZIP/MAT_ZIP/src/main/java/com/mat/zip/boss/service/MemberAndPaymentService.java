@@ -18,9 +18,7 @@ public class MemberAndPaymentService {
 
     @Transactional
     public void registerAndPay(BossMemberVO member) {
-        // 회원 정보 저장
         memberDAO.innerJoinAndInsert(member);
-        System.out.println(member);
     }
 }
 

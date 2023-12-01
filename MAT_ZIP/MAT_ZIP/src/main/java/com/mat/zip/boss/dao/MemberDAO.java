@@ -11,12 +11,12 @@ import com.mat.zip.boss.model.MemberVO;
 public class MemberDAO {
     @Autowired
     SqlSession sqlSession;
-    
-    @Autowired
-	SqlSessionTemplate my;
-    
-    public MemberVO login(MemberVO bag) {
-		return my.selectOne("member.member_login", bag);
 
-	}
+    @Autowired
+    SqlSessionTemplate my;
+
+    public MemberVO login(MemberVO bag) {
+        return my.selectOne("member.member_login", bag);
+
+    }
 }

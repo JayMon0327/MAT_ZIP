@@ -1,6 +1,7 @@
 package com.mat.zip.boss.service;
 
 import java.nio.charset.StandardCharsets;
+
 import org.json.JSONObject;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -16,16 +17,16 @@ public class ChartSentimentService {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
 
-        headers.set("X-NCP-APIGW-API-KEY-ID", "3uzmdwnb3e");
-        headers.set("X-NCP-APIGW-API-KEY", "cfeIcnHDzQ5A9vq2Bj7ulYNqDnr7sLVw6MsxTBzO");
+        headers.set("X-NCP-APIGW-API-KEY-ID", "");
+        headers.set("X-NCP-APIGW-API-KEY", "");
         headers.setContentType(new MediaType("application", "json", StandardCharsets.UTF_8)); //인코딩 형태는 고정. 
 
         HttpEntity<String> entity = new HttpEntity<>(requestBody, headers);
 
-        String url = "https://naveropenapi.apigw.ntruss.com/sentiment-analysis/v1/analyze";
+        String url = "";
         ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
         String responseBody = response.getBody();
-        
+
         // 클라이언트에 응답 보내기전 UTF-8로 리턴해주기
         try {
             responseBody = new String(responseBody.getBytes("ISO-8859-1"), "UTF-8");
