@@ -53,19 +53,17 @@
             🔻📁controller
                 BoardController.java
                 ReplyController.java
-                MemberController.java
                 ChartController.java
-                PaymentController.java 
+                PaymentController.java
+
             🔻📁dao
                 BoardDAO.java
                 ReplyDAO.java
                 MemberDAO.java
-                BossMemberDAO.java
                 ChartDAO.java
                 ReviewAnalysisDAO.java
                 PaymentDAO.java
-                🔻📁implementations
-                    ReviewAnalysisDAOImpl.java
+
             🔻📁model
                 BoardVO.java
                 BoardLikesVO.java
@@ -76,17 +74,16 @@
                 ReturnCustomerCountVO.java
                 ReturnOrderCountVO.java
                 ReturnOrderTotalVO.java
-                PaymentResponseVO.java
+                PaymentResponse.java
                 PaymentVO.java
 
             🔻📁service
                 ChartService.java
-                ChartSentimentService.java
+                ReviewTransferService.java
                 ReviewAnalysisService.java
                 PaymentService.java
-                MemberAndPaymentService.java
-                🔻📁Implementations
-                    ReviewAnalysisServiceImpl.java
+                RegisterMemberAndPaymentService.java
+
     🔻📁resources
         🔻📁mapper
             BoardMapper.xml
