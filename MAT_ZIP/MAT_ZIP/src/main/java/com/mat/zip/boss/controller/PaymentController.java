@@ -1,11 +1,11 @@
 package com.mat.zip.boss.controller;
 
 import com.google.gson.JsonObject;
-import com.mat.zip.boss.dao.BossMemberDAO;
+import com.mat.zip.boss.dao.MemberDAO;
 import com.mat.zip.boss.dao.PaymentDAO;
 import com.mat.zip.boss.model.BossMemberVO;
 import com.mat.zip.boss.model.PaymentVO;
-import com.mat.zip.boss.service.MemberAndPaymentService;
+import com.mat.zip.boss.service.RegisterMemberAndPaymentService;
 import com.mat.zip.boss.service.PaymentService;
 
 import org.springframework.web.bind.annotation.*;
@@ -25,9 +25,9 @@ public class PaymentController {
     @Autowired
     PaymentDAO dao;
     @Autowired
-    BossMemberDAO bossdao;
+    MemberDAO bossdao;
     @Autowired
-    MemberAndPaymentService memberAndPaymentService;
+    RegisterMemberAndPaymentService registerMemberAndPaymentService;
     @Autowired
     HttpSession session;
 
@@ -83,7 +83,7 @@ public class PaymentController {
             return "1";
         }
 
-        memberAndPaymentService.registerAndPay(member);
+        registerMemberAndPaymentService.registerAndPay(member);
 
         String boss_id = member.getUser_id();
         session.setAttribute("boss_id", boss_id);

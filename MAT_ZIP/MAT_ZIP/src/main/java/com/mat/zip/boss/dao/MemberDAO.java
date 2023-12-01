@@ -1,22 +1,21 @@
 package com.mat.zip.boss.dao;
 
-import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 
-import com.mat.zip.boss.model.MemberVO;
+import com.mat.zip.boss.model.BossMemberVO;
 
-@Repository
+@Component
 public class MemberDAO {
-    @Autowired
-    SqlSession sqlSession;
-
     @Autowired
     SqlSessionTemplate my;
 
-    public MemberVO login(MemberVO bag) {
-        return my.selectOne("member.member_login", bag);
+    public void innerJoinAndInsert(BossMemberVO bag) {
+        my.insert("boss.insertJoinedData", bag);
+    }
 
+    public int checkStoreId(String storeId) {
+        return my.selectOne("boss.checkStoreId", storeId);
     }
 }

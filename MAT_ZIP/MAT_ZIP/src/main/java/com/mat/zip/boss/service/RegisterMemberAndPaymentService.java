@@ -3,16 +3,16 @@ package com.mat.zip.boss.service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.mat.zip.boss.dao.BossMemberDAO;
+import com.mat.zip.boss.dao.MemberDAO;
 import com.mat.zip.boss.model.BossMemberVO;
 
 @Service
-public class MemberAndPaymentService {
+public class RegisterMemberAndPaymentService {
 
-    private final BossMemberDAO memberDAO;
+    private final MemberDAO memberDAO;
 
     @Autowired
-    public MemberAndPaymentService(BossMemberDAO memberDAO, PaymentService paymentService) {
+    public RegisterMemberAndPaymentService(MemberDAO memberDAO, PaymentService paymentService) {
         this.memberDAO = memberDAO;
     }
 

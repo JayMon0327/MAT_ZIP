@@ -2,7 +2,7 @@ package com.mat.zip.boss.model;
 
 import java.util.Date;
 
-public class PaymentResponseVO {
+public class PaymentResponse {
 
     private String paymentKey;
     private String orderId;
