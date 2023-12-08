@@ -96,6 +96,38 @@ https://github.com/JayMon0327/MAT_ZIP_migration
             ChartMapper.xml
             ReviewAnalysisMapper.xml
             PaymentMapper.xml
+
+    🔻📁webapp
+        🔻📁boss
+            index.jsp
+            chart.jsp
+            saveMember.jsp
+            boardInsert.jsp
+            boardUpdate.jsp
+            boardDelete.jsp
+
+        🔻📁layout
+            foorter.jsp
+            header.jsp
+
+        🔻📁resources
+            🔻📁js
+                bossMenu.js
+                bossReply.js
+                bossScroll.js
+
+        🔻📁WEB-INF
+            🔻📁views
+                🔻📁boss
+                    boardDetail.jsp
+                    boardIndex.jsp
+                    boardInsert.jsp
+                    boardSearch.jsp
+                    boardUpdate.jsp
+                    saveReply.jsp
+                    tossFail.jsp
+                    tossSuccess.jsp
+
 ```
 
 <br />
