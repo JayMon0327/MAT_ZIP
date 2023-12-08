@@ -1,5 +1,5 @@
 
-// boss_chart.jsp 내부의 차트 버튼 클릭 시
+// 매출차트 내부의 차트 버튼 클릭 시
 $("#salesChartBtn, #reorderChartBtn, #emotionChartBtn").click(function() {
   // 버튼에 따라 스크롤 이동 위치 설정
   var scrollPosition;

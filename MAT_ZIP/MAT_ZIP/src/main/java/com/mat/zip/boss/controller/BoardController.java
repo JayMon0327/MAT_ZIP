@@ -29,7 +29,7 @@ public class BoardController {
     /**
      * 게시판 글 생성
      */
-    @PostMapping("/Board_insert")
+    @PostMapping("/saveBoard")
     public void insert(BoardVO bag) {
         boardDAO.insert(bag);
 
@@ -38,16 +38,16 @@ public class BoardController {
     /**
      * 게시판 글 수정
      */
-    @PutMapping("/Board_update")
+    @PutMapping("/updateBoard")
     public String update(@ModelAttribute BoardVO bag, HttpSession session, Model model) {
         boardDAO.update(bag);
         model.addAttribute("bag", bag);
         String prevPage = (String) session.getAttribute("prevPage");
         if (prevPage != null) {
-            return "redirect:board_index.jsp";
+            return "redirect:index.jsp";
         } else {
             // 이전 페이지 정보가 없는 경우, 기본 페이지로 리다이렉트
-            return "forward:board_index.jsp";
+            return "forward:index.jsp";
         }
     }
 
@@ -55,7 +55,7 @@ public class BoardController {
     /**
      * 게시판 글 삭제
      */
-    @DeleteMapping("/Board_delete")
+    @DeleteMapping("/deleteBoard")
     public void delete(int board_id) {
         boardDAO.delete(board_id);
 
@@ -64,7 +64,7 @@ public class BoardController {
     /**
      * 게시판 글 검색 기능
      */
-    @GetMapping("/Board_search")
+    @GetMapping("/boardSearch")
     public void search(String keyword, Model model) {
         List<BoardVO> list = boardDAO.searchByTitleOrContent(keyword);
         model.addAttribute("list", list);
@@ -73,7 +73,7 @@ public class BoardController {
     /**
      * 게시판 상세 페이지
      */
-    @GetMapping("/Board_detail")
+    @GetMapping("/boardDetail")
     public void detail(int board_id, Model model) {
         BoardVO bag = boardDAO.one(board_id);
         boardDAO.view(board_id);
@@ -92,7 +92,7 @@ public class BoardController {
     /**
      * 댓글 리스트 가져오기
      */
-    @GetMapping("/Board_list")
+    @GetMapping("/boardIndex")
     public void list(Model model, @RequestParam(defaultValue = "1") int page) {
         int limit = 15;
         int offset = (page - 1) * limit;

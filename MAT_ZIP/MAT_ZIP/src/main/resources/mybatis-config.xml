@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE configuration
-  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-<!-- SQL문 정의할 때 VO표현을 간단하게 하고 싶은 경우. 
-     별명을 지어서 사용 -->
-   <typeAliases>
-      <typeAlias type="com.mat.zip.boss.model.BoardVO" alias="boardVO"></typeAlias>
-      <typeAlias type="com.mat.zip.boss.model.ReplyVO" alias="ComVO"></typeAlias>
-      <typeAlias type="com.mat.zip.boss.model.BossMemberVO" alias="boss_memberVO"></typeAlias>
-      <typeAlias type="com.mat.zip.boss.model.MemberVO" alias="memberVO"></typeAlias>
-      <typeAlias type="com.mat.zip.boss.model.PaymentVO" alias="paymentVO"></typeAlias>
-      <typeAlias type="com.mat.zip.boss.model.ChartVO" alias="ChartVO"></typeAlias>
+    <!-- SQL문 정의할 때 VO표현을 간단하게 하고 싶은 경우.
+         별명을 지어서 사용 -->
+    <typeAliases>
+        <typeAlias type="com.mat.zip.boss.model.BoardVO" alias="boardVO"></typeAlias>
+        <typeAlias type="com.mat.zip.boss.model.ReplyVO" alias="ComVO"></typeAlias>
+        <typeAlias type="com.mat.zip.boss.model.BossMemberVO" alias="boss_memberVO"></typeAlias>
+        <typeAlias type="com.mat.zip.boss.model.MemberVO" alias="memberVO"></typeAlias>
+        <typeAlias type="com.mat.zip.boss.model.PaymentVO" alias="paymentVO"></typeAlias>
+        <typeAlias type="com.mat.zip.boss.model.ChartVO" alias="ChartVO"></typeAlias>
 
-   </typeAliases>
-   
-   <mappers>
-   <!-- SQL문 정의하는 파일들의 목록을 지정. -->
-      <mapper resource="mapper/BoardMapper.xml" />
-      <mapper resource="mapper/ComMapper.xml" />
-      <mapper resource="mapper/BossMapper.xml" />
-      <mapper resource="mapper/PaymentMapper.xml" />
-      <mapper resource="mapper/ChartMapper.xml" />
-      <mapper resource="mapper/Chart_reviewMapper.xml" />
-   </mappers>
-   
+    </typeAliases>
+
+    <mappers>
+        <!-- SQL문 정의하는 파일들의 목록을 지정. -->
+        <mapper resource="mapper/BoardMapper.xml"/>
+        <mapper resource="mapper/ComMapper.xml"/>
+        <mapper resource="mapper/BossMapper.xml"/>
+        <mapper resource="mapper/PaymentMapper.xml"/>
+        <mapper resource="mapper/ChartMapper.xml"/>
+        <mapper resource="mapper/Chart_reviewMapper.xml"/>
+    </mappers>
+
 </configuration>

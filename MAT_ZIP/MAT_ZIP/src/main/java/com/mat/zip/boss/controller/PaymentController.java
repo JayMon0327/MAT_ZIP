@@ -55,8 +55,7 @@ public class PaymentController {
         if (paymentResponse != null) {
             model.addAttribute("paymentResponse", paymentResponse);
             return "/boss/tossSuccess";
-        }
-        else {
+        } else {
             return "/boss/tossFail";
         }
     }

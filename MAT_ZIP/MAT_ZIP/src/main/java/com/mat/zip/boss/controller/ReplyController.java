@@ -7,10 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import com.mat.zip.boss.dao.BoardDAO;
 import com.mat.zip.boss.dao.ReplyDAO;
@@ -28,14 +25,14 @@ public class ReplyController {
     /**
      * 댓글
      */
-    @RequestMapping("/boss/Board_insertcom")
+    @RequestMapping("/boss/saveReply")
     public void insert(ReplyVO bag, int board_id, Model model) {
         List<ReplyVO> list = replyDAO.list(board_id);
         model.addAttribute("Com_list", list);
         replyDAO.insert(bag);
     }
 
-    @PutMapping("/boss/Com_update")
+    @PutMapping("/boss/updateReply")
     public void update(ReplyVO bag, HttpSession session) {
         String currentUserId = (String) session.getAttribute("user_id");
         ReplyVO existingComment = replyDAO.one(bag.getReply_id());
@@ -46,7 +43,7 @@ public class ReplyController {
         }
     }
 
-    @DeleteMapping("/boss/Com_delete")
+    @DeleteMapping("/boss/deleteReply")
     public void delete(int reply_id, HttpSession session) {
         String currentUserId = (String) session.getAttribute("user_id");
         ReplyVO existingComment = replyDAO.one(reply_id);
@@ -57,13 +54,13 @@ public class ReplyController {
         }
     }
 
-    @GetMapping("Com_one")
-    public void one(int Com_id, Model model) {
+    @GetMapping("Reply/{id}")
+    public void one(@PathVariable int Com_id, Model model) {
         ReplyVO bag = replyDAO.one(Com_id);
         model.addAttribute("bag", bag);
     }
 
-    @GetMapping("Board_view")
+    @GetMapping("boardView")
     public String view(BoardVO bag, Model model, int board_id) {
         BoardVO board = BoardDAO.one(board_id);
         model.addAttribute("bag", board);

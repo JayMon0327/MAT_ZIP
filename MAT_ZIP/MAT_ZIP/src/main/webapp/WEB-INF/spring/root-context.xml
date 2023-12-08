@@ -1,57 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:aop="http://www.springframework.org/schema/aop"
-	xmlns:tx="http://www.springframework.org/schema/tx"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
-	
-	<context:property-placeholder
-		location="classpath:db.properties" />
 
-	<!-- 싱글톤 만들거 있으면 여기에 설정해주세요. @Component과 같은 역할 어노테이션으로 싱글톤 생성하는 것이 불가능할 
-		때 보통 사용함. 1) mybatis 2) dbcp: mybatis에 dbcp를 껴야함. 3) mybtis config: mybatis설정 
-		담당 -->
+    <context:property-placeholder
+            location="classpath:db.properties"/>
 
-	<!-- 1) mybatis SqlSessionTemplate my = new SqlSessionTemplate(config); -->
-	<bean id="my" class="org.mybatis.spring.SqlSessionTemplate">
-		<constructor-arg ref="config"></constructor-arg>
-	</bean>
+    <!-- 싱글톤 만들거 있으면 여기에 설정해주세요. @Component과 같은 역할 어노테이션으로 싱글톤 생성하는 것이 불가능할
+        때 보통 사용함. 1) mybatis 2) dbcp: mybatis에 dbcp를 껴야함. 3) mybtis config: mybatis설정
+        담당 -->
 
-	<!-- DBCP dbcp = new DBCP(); dbcp.setDriverClassName = "com.mysql.cj.~~~"; 
-		dbcp.setUrl = "jdbc:mysql://localhost:3306/multi"; dbcp.setUsername = "root"; 
-		dbcp.setPassword = "1234"; jdbc의 1,2단계를 담당해주는 클래스! -->
-	<!-- 2) dbcp -->
-	<bean id="dbcp" class="org.apache.commons.dbcp.BasicDataSource">
-		<property name="driverClassName" value="${jdbc.driver}"></property>
-		<property name="url" value="${jdbc.url}"></property>
-		<property name="username" value="${jdbc.username}"></property>
-		<property name="password" value="${jdbc.password}"></property>
-	</bean>
+    <!-- 1) mybatis SqlSessionTemplate my = new SqlSessionTemplate(config); -->
+    <bean id="my" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg ref="config"></constructor-arg>
+    </bean>
 
-	<!-- 3) mybatis config 경로쓸 때 classpath는 src/main/resources를 지정함.! -->
-	<bean id="config" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dbcp"></property>
-		<property name="configLocation"
-			value="classpath:mybatis-config.xml"></property>
-	</bean>
-	
-	<!-- 사진 등록 multipart 관련 빈 등록 -->
-	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-    	<property name="maxUploadSize" value="10485760" />
-	</bean>
-	
-	<!-- gamil 인증 관련 빈 등록 -->	
-	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-		<property name="host" value="smtp.gmail.com" />
-		<property name="port" value="587" />
-		<property name="username" value="qpqp7371@gmail.com" />
-		<property name="password" value="rztgpvcgyaidyzef" />
-		<property name="javaMailProperties">
-		<props>
+    <!-- DBCP dbcp = new DBCP(); dbcp.setDriverClassName = "com.mysql.cj.~~~";
+        dbcp.setUrl = "jdbc:mysql://localhost:3306/multi"; dbcp.setUsername = "root";
+        dbcp.setPassword = "1234"; jdbc의 1,2단계를 담당해주는 클래스! -->
+    <!-- 2) dbcp -->
+    <bean id="dbcp" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName" value="${jdbc.driver}"></property>
+        <property name="url" value="${jdbc.url}"></property>
+        <property name="username" value="${jdbc.username}"></property>
+        <property name="password" value="${jdbc.password}"></property>
+    </bean>
+
+    <!-- 3) mybatis config 경로쓸 때 classpath는 src/main/resources를 지정함.! -->
+    <bean id="config" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dbcp"></property>
+        <property name="configLocation"
+                  value="classpath:mybatis-config.xml"></property>
+    </bean>
+
+    <!-- 사진 등록 multipart 관련 빈 등록 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="10485760"/>
+    </bean>
+
+    <!-- gamil 인증 관련 빈 등록 -->
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="smtp.gmail.com"/>
+        <property name="port" value="587"/>
+        <property name="username" value="qpqp7371@gmail.com"/>
+        <property name="password" value="rztgpvcgyaidyzef"/>
+        <property name="javaMailProperties">
+            <props>
                 <prop key="mail.transport.protocol">smtp</prop>
                 <prop key="mail.smtp.auth">true</prop>
                 <!-- gmail의 경우 보안문제 업데이트로 인해 SSLSocketFactory를 추가해야 smtp 사용 가능. -->
@@ -59,26 +59,26 @@
                 <prop key="mail.smtp.starttls.enable">true</prop>
                 <prop key="mail.debug">true</prop>
                 <prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop>
-				<prop key="mail.smtp.ssl.protocols">TLSv1.2</prop>
+                <prop key="mail.smtp.ssl.protocols">TLSv1.2</prop>
             </props>
-      </property>
-	</bean>
-	
-	<!-- 트랜잭션 설정 Namespaces에 aop/tx configuration file 추가-->
-	<!-- TransactionManager 에러 처리 -->
-	<bean id="transactionManager"
-		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dbcp" />
-	</bean>
-	<!-- 트랜잭션 AOP 설정 -->
-	<tx:advice id="txAdvice" transaction-manager="transactionManager">
-		<tx:attributes>
-			<tx:method name="exChange" rollback-for="Exception" />
-			<tx:method name="registerAndPay" rollback-for="Exception" />
-		</tx:attributes>
-	</tx:advice>
-	<!-- 트랜잭션 -->
-	<tx:annotation-driven transaction-manager="transactionManager" />
-	
-	
+        </property>
+    </bean>
+
+    <!-- 트랜잭션 설정 Namespaces에 aop/tx configuration file 추가-->
+    <!-- TransactionManager 에러 처리 -->
+    <bean id="transactionManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dbcp"/>
+    </bean>
+    <!-- 트랜잭션 AOP 설정 -->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="exChange" rollback-for="Exception"/>
+            <tx:method name="registerAndPay" rollback-for="Exception"/>
+        </tx:attributes>
+    </tx:advice>
+    <!-- 트랜잭션 -->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+
 </beans>

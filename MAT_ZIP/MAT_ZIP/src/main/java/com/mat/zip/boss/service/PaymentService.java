@@ -20,7 +20,7 @@ public class PaymentService {
 
 
     public JsonObject processPayment(String paymentKey, int amount, String orderId) {
-        String secretKey = "test_sk_ODnyRpQWGrNP2J6GZve3Kwv1M9EN";
+        String secretKey = "";
         String encodedSecretKey = Base64.getEncoder().encodeToString((secretKey + ":").getBytes());
 
         try (CloseableHttpClient client = HttpClients.createDefault()) {
